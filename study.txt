@@ -1,0 +1,38 @@
+khttp://edu.yuantuan.com/   微信公众号开发一站式课程
+
+http://www.shuotupu.com/forum.php 微赞 微擎 各种开源代码（很牛B）
+
+http://study.163.com/  网易云课堂
+
+http://www.thinkphp.cn/topic/4214.html   微信获取天气数据、快递信息、翻译等。
+http://www.h-ui.net/H-ui.admin.shtml   后台模版
+
+http://blog.csdn.net/x_iya/article/details/8577232 ip地址转化成实际地址
+
+
+http://blog.csdn.net/liruxing1715/article/details/28238483 php获取用户地址
+
+http://www.henkuai.com/ 微信开发者社区（大网站）
+http://www.henkuai.com/thread-12860-1-1.html  微信支付H5支付
+http://www.haoid.cn/ 好站长资源
+http://www.dede168.com/ 织梦资源网
+http://www.suibianlu.com/ 随便撸
+http://www.goodziyuan.com/  好资源
+
+
+shuipcms
+
+http://www.tudou.com/plcover/zhfg8CzLQYk/ 微擎开发视频
+
+
+http://baijunyao.com/   php博客，里面包含很多支付啊教程
+
+http://www.destoon.org.cn/ destoon 爱好者
+
+ 
+http://www.cnblogs.com/dee0912/p/4285221.html  ThinkPHP 3.2.2 实现持久登录
+
+http://www.shuotupu.com/ 说图谱 微赞等
+
+
+http://baijunyao.com/
