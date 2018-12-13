@@ -1,0 +1,115 @@
+{extend name="/common@body" /}{block name="main"}
+<div class="Huialert Huialert-success"><i class="Hui-iconfont"></i>友情提示:对关键词进行增删改后,点击“立即生效”按钮</div> 
+<?php
+echo widget('common/filter/form', [/*参数数组*/
+[/*第一个参数*/
+widget('common/filter/input', ['关键词', 'name']),
+widget('common/filter/select', ['类别', 'type', $type]),
+widget('common/filter/select', ['状态', 'status', $status]),
+]
+]);
+?>
+
+<div class="js_super_table">
+	<div class="cl pd-5 bg-1 bk-gray mt-20">
+		<span class="l">
+			<button class="btn btn-success js_operate" title="添加关键词" data-title="添加关键词" data-callback="layer_model" data-url="<?= url('model_add'); ?>"><i class="Hui-iconfont Hui-iconfont-add"></i> 添加关键词</button>
+			<button class="btn btn-danger js_operate" data-ids=".js_super_table .js_checkbox:checked" data-confirm="1" title="批量删除" data-title="批量删除" data-url="<?= url('operate_status_3') ?>"><i class="Hui-iconfont Hui-iconfont-suoding"></i> 批量删除</button>
+			<button class="btn  btn-success js_operate" title="立即生效" data-title="立即生效" data-url="/black/black/update_cache.html" href="javascript:;">
+            <i class="Hui-iconfont"></i> 立即生效   
+        </button>
+		</span>
+	</div>
+<div class="mt-20">
+	<div class="dataTables_wrapper">
+	<?=widget('common/page/render',['page' => $page,'param'=>$param]);?>
+		<table class="table table-border table-bordered table-bg table-hover table-striped dataTable">
+			<thead>
+			<tr class="text-c">
+				<th width="15px;">
+					<label for="Ca"><input type="checkbox" id="Ca" class="js_checkbox" data-type="parent" value="0"/></label>
+				</th>
+				<th class="th_id <?=$thead['id']['class'];?>" data-url="<?=$thead['id']['url'];?>">编号</th>
+				<th>关键词</th>
+				<th>类别</th>
+				<th>有效期</th>
+				<th>状态</th>
+				<th>提交人</th>
+				<th>时间</th>
+				<th>备注</th>
+				<th>操作</th>
+			</tr>
+			</thead>
+			<tbody>
+			<?php
+			foreach($list as $row){
+			?>
+			<tr class="text-c" >
+				<td>
+					<label for="info_<?=$row->id;?>"><input id="info_<?=$row->id;?>" type="checkbox" class="js_checkbox" data-type="child" value="<?=$row->id;?>"></label>
+				</td>
+				<td><?=$row->id;?></td>
+				<td><?=$row->name;?></td>
+				<td>
+				{if condition="$row['type'] eq 1"}
+				词组
+				{elseif condition="$row['type'] eq 2"}
+				QQ
+				{elseif condition="$row['type'] eq 3"}
+				URL
+				{elseif condition="$row['type'] eq 4"}
+				微信
+				{elseif condition="$row['type'] eq 5"}
+				邮箱
+				{elseif condition="$row['type'] eq 6"}
+				正则
+				{else/}
+				空
+				{/if}
+				</td>
+				<td><?=$row->time_b;?>至 <?=$row->time_e;?></td>
+				<td>
+				{if condition="$row['status'] eq 1"}
+				正常
+				{elseif condition="$row['status'] eq 2"}
+				关闭
+				{elseif condition="$row['status'] eq 3"}
+				删除
+				{else/}
+				空
+				{/if}
+				<td><?=!empty($row->backend_user)?$row->backend_user->real_name:'系统'?></td>
+				<td><?=$row->create_time;?></td>
+				<td><?=$row->remark;?></td>
+				</td>
+				
+				<td>
+					<button data-url="<?= url('model_edit') ?>" data-id="<?= $row['id'] ?>" data-callback="layer_model" class="btn size-MINI radius btn-secondary-outline js_operate" data-title="编辑" title="编辑">
+						编辑
+					</button>
+					{if condition="$row['status'] == 1"}
+					<button data-url="<?= url('operate_status_2') ?>" data-id="<?= $row['id'] ?>" data-confirm="1" class="btn size-MINI radius btn-danger-outline js_operate" data-title="停用" title="停用">
+						停用
+					</button>
+					{else/}
+					<button data-url="<?= url('operate_status_1') ?>" data-id="<?= $row['id'] ?>" data-confirm="1" class="btn size-MINI radius btn-secondary-outline js_operate" data-title="启用" title="启用">
+						启用
+					</button>
+					{/if}
+					<button data-url="<?= url('operate_status_3') ?>" data-id="<?= $row['id'] ?>" data-confirm="1" class="btn size-MINI radius btn-danger-outline js_operate" data-title="删除" title="删除">
+						删除
+					</button>
+				</td>
+			</tr>
+				<?php
+			}
+			?>
+			</tbody>
+		</table>
+		<?=widget('common/page/render',['page' => $page,'param'=>$param]);?>
+	</div>
+</div>
+</div>
+
+
+{/block}

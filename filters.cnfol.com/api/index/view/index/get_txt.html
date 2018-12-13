@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .text-l{
+            text-align: center;
+        }
+        .pagination{text-align:center;margin-top:20px;margin-bottom: 20px;}
+        .pagination li{margin:0px 2px; border:1px solid #e6e6e6;padding: 1px 2px;display: inline-block;}
+        .pagination .active{background-color: #dd1a20;color: #fff;}
+        .pagination .disabled{color:#aaa;}
+    </style>
+</head>
+<body>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="input-group">
+                <form action="/index/index/add_txt" method="post">
+                    <input type="text" class="form-control" placeholder="添加违禁词" name="name">
+                    <input type="submit">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="input-group">
+                <form action="" method="post">
+                    <input type="text" class="form-control" placeholder="请输入违禁词" name="name" value="{$name}">
+                    <input type="submit">
+                    <a href="" class="btn btn-default">重置</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<table border="1">
+  <tr>
+    <th>id</th>
+    <th>违禁词</th>
+  </tr>
+  
+	{foreach $data as $vo} 
+	<tr>
+    	<td>{$vo.id}</td>
+    	<td>{$vo.name}</td>
+    </tr>
+	{/foreach}
+  
+</table>
+{$page}
+</body>
+</html>

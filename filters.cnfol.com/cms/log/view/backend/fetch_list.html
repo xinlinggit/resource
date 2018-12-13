@@ -1,0 +1,77 @@
+{extend name="common@body" /}
+{block name="main"}
+
+<?php
+echo widget('common/filter/form', [/*参数数组*/
+		[/*第一个参数*/
+				widget('common/filter/input', ['操作人', 'real_name']),
+				widget('common/filter/select', ['模块名称', 'menu_id', $menu_select]),
+				widget('common/filter/input', ['操作名称', 'operate']),
+				widget('common/filter/date_range', ['操作时间', 'create']),
+		]
+]);
+?>
+<div class="js_super_table">
+<div class="cl pd-5 bg-1 bk-gray mt-20">
+	<span class="r">
+	</span>
+</div>
+<div class="mt-20">
+	<div class="dataTables_wrapper">
+		<?=widget('common/page/render',['page' => $page,'param'=>$param]);?>
+		<table class="table table-border table-bordered table-bg table-hover table-striped">
+			<thead>
+			<tr class="text-c">
+				<th class="th_check_id">
+					<label for="Ca"><input type="checkbox" id="Ca" class="js_checkbox" data-type="parent" value="0"/></label>
+				</th>
+				<th class="th_id">编号</th>
+				<th class="th_real_name">操作人</th>
+				<th class="th_title">模块名称</th>
+				<th class="th_title">操作名称</th>
+				<th class="th_id">数据ID</th>
+				<th class="th_time">操作时间</th>
+				<th class="th_ip">IP地址</th>
+			</tr>
+			</thead>
+			<tbody>
+			<?php
+			foreach($list as $row){
+
+				?>
+			<tr class="text-c" >
+				<td>
+					<label for="info_<?=$row->id;?>"><input id="info_<?=$row->id;?>" type="checkbox" class="js_checkbox" data-type="child" value="<?=$row->id;?>"></label>
+				</td>
+				<td ><?=$row->id;?></td>
+				<td data-media-id="<?=$row->backend_user_id;?>"><?=!empty($row->backend_user)?$row->backend_user->real_name:'';?></td>
+				<?php
+				if($row->menu_id) {
+					?>
+					<td>
+						<a href="<?= url($row->backend_menu->url); ?>" title="<?= $row->menu_crumb_text; ?>"><?= $row->menu_crumb_text; ?></a>
+					</td>
+					<?php
+				}
+				else{
+					?>
+				<td>&nbsp;</td>
+				<?php
+				}
+				?>
+				<td><?=$row->operate;?></td>
+				<td><?=$row->data_ids;?></td>
+				<td><?=$row->create_time;?></td>
+				<td><?=$row->ip;?></td>
+			</tr>
+				<?php
+			}
+			?>
+			</tbody>
+		</table>
+		<?=widget('common/page/render',['page' => $page,'param'=>$param]);?>
+	</div>
+</div>
+</div>
+
+{/block}

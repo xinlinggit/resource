@@ -1,0 +1,45 @@
+<form class="form form-horizontal js_super_form" method="post" action="<?=$action;?>" autocomplete="off" enctype="multipart/form-data">
+	<input type="hidden" name="id" value="<?=isset($info->id)?$info->id:'';?>"/>
+	<div class="modal-body">
+		<div class="row cl">
+			<label class="form-label col-xs-5 col-sm-3">上级：</label>
+			<div class="formControls col-xs-7 col-sm-9">
+				<span class="select-box">
+				<select name="pid" class="select" title="上级">
+					<option value="0">顶级</option>
+					<?=$pid_select;?>
+				</select>
+				</span>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-5 col-sm-3"><span class="c-red">*</span>名称：</label>
+			<div class="formControls col-xs-7 col-sm-9">
+				<input type="text" class="input-text" datatype="*" value="<?=isset($info->title)?$info->title:'';?>" placeholder="" name="title">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-5 col-sm-3">url：</label>
+			<div class="formControls col-xs-7 col-sm-9">
+				<input type="text" class="input-text" value="<?=isset($info->url)?$info->url:'';?>" placeholder="" name="url">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-5 col-sm-3">排序值：</label>
+			<div class="formControls col-xs-7 col-sm-9">
+				<input type="text" class="input-text" value="<?=isset($info->sort)?$info->sort:'';?>" placeholder="0" name="sort">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-5 col-sm-3">简要描述：</label>
+			<div class="formControls col-xs-7 col-sm-9">
+				<textarea name="description" cols="" rows="" class="textarea"  placeholder="" ><?=isset($info->description)?$info->description:'';?></textarea>
+
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-default js_close_layer" >取消</button>
+		<button type="submit" class="btn btn-primary">保存</button>
+	</div>
+</form>

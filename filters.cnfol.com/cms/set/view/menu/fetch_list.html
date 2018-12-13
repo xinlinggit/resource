@@ -1,0 +1,80 @@
+{extend name="common@body" /}{block name="main"}
+<div class="js_super_table">
+	<div class="cl pd-5 bg-1 bk-gray mt-20">
+		<span class="l">
+			<button class="btn btn-success js_operate" title="添加模块" data-title="添加模块" data-callback="layer_model" data-url="<?= url('model_add'); ?>"><i class="Hui-iconfont Hui-iconfont-add"></i> 添加模块</button>
+			<button class="btn btn-success js_operate" title="添加功能" data-title="添加功能" data-callback="layer_model" data-url="<?= url('model_action_add'); ?>"><i class="Hui-iconfont Hui-iconfont-add"></i> 添加功能</button>
+		</span>
+	</div>
+	<div class="mt-20">
+		<table class="table table-border table-bordered table-bg table-hover table-sort">
+			<thead>
+			<tr class="text-c">
+				<th class="th_id">编号</th>
+				<th width="250px;">菜单名称</th>
+				<th class="th_category">类型</th>
+				<th >描述</th>
+				<th >URL</th>
+				<th class="th_sort">排序</th>
+				<th class="th_time">最后更新时间</th>
+				<th class="th_operate">操作</th>
+			</tr>
+			</thead>
+			<tbody>
+			<?php
+			$tr = '';
+			$tr = function ($list, $level = 0) use (&$tr) {
+				foreach ($list as $key => $row) {
+					$icon = ' Hui-iconfont-jianhao ';
+					$fold = '0';
+					if ($row['child']) {
+						$icon = ' Hui-iconfont-add ';
+						$fold = 1;
+					}
+					?>
+					<tr class="text-c js_fold_tr" data-fold="<?=$fold;?>" data-pid="<?= $row['data']['pid']; ?>" data-id="<?= $row['data']['id'] ?>" data-child-ids="<?= implode(',', $row['child_ids']); ?>">
+						<td><?= $row['data']['id']; ?></td>
+						<td class="text-l"><?= str_pad('', $level * 4 * 6, "&nbsp;", STR_PAD_LEFT); ?>
+							<i class=" Hui-iconfont <?= $icon ?> btn-secondary" data-fold="<?= $fold ?>"></i>&nbsp;<?= $row['data']['title']; ?>
+						</td>
+						<td>
+							<?php
+							if ($row['data']['type'] == 1) {
+								?>
+								<span class="label label-secondary radius"><?= $row['data']['type_text']; ?></span>
+								<?php
+							} else {
+								?>
+								<span class="label label-success radius"><?= $row['data']['type_text']; ?></span>
+								<?php
+							}
+							?>
+						</td>
+						<td><?= $row['data']['description']; ?></td>
+						<td class="text-l">
+							<a href="<?= url($row['data']['url']); ?>" title=""><?= $row['data']['url']; ?></a></td>
+						<td><?= $row['data']['sort']; ?></td>
+						<td><?= $row['data']['update_time']; ?></td>
+						<td>
+							<button title="编辑" class="btn size-MINI btn-secondary-outline radius js_operate" data-title="编辑-<?= $row['data']['title'] ?>" data-id="<?= $row['data']['id']; ?>" data-callback="layer_model" data-url="<?= ($row['data']['type'] == 1) ? url('model_edit') : url('model_action_edit'); ?>">
+								<i class="Hui-iconfont Hui-iconfont-edit"></i></button>
+						</td>
+					</tr>
+					<?php
+					if ($row['child']) {
+						$tr($row['child'], $level + 1);
+					}
+
+				}
+			};
+			$tr($list);
+			?>
+
+			</tbody>
+		</table>
+
+	</div>
+</div>
+
+
+{/block}

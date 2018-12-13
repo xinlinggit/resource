@@ -1,0 +1,10 @@
+# Robots.txt file from http://mp.cnfol.com
+# All robots will spider the domain
+User-agent: *
+Disallow:/404.html
+Disallow:/upload/
+Disallow:/css/
+Disallow:/js/
+Disallow:/?*
+Disallow:/index
+Allow:/

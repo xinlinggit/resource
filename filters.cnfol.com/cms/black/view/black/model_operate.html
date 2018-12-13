@@ -1,0 +1,48 @@
+<form class="form form-horizontal js_super_form" method="post" action="<?=$action?>" autocomplete="off" enctype="multipart/form-data">
+	<input type="hidden" name="id" value="<?=$info['id']?>"/>
+	<div class="modal-body">
+	
+	<strong>编辑关键词</strong>
+		<div class="row cl">
+			<label class="form-label col-xs-2 col-sm-2">关键词：</label>
+			<div class="formControls col-xs-5 col-sm-5">
+				<input type="text" class="input-text" value="<?=$info['name']?>" placeholder=""  name="name" required="true">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-2 col-sm-2">类别：</label>
+			<div class="formControls col-xs-2 col-sm-2">
+				<span class="select-box">
+				<select name="type" id="type" class="select" title="素材类型" onChange="SiteSlt2(this)">
+					<option value="1" <?=$info['type'] == '1' || !$info['type']?'selected':'';?>>词组</option>
+					<option value="2" <?=$info['type'] == '2'?'selected':'';?>>QQ</option>
+					<option value="3" <?=$info['type'] == '3'?'selected':'';?>>URL</option>
+					<option value="4" <?=$info['type'] == '4'?'selected':'';?>>微信</option>
+					<option value="5" <?=$info['type'] == '5'?'selected':'';?>>邮箱</option>
+					<option value="6" <?=$info['type'] == '6'?'selected':'';?>>正则</option>
+				</select>
+				</span>
+			</div>
+		</div>
+		<div class="row cl" id="period_specific">
+			<label class="form-label col-xs-2 col-sm-2">有效期：</label>
+			<div class="formControls col-xs-2 col-sm-2" style="padding-right: 5px;">
+				<input type="text" class="input-text Wdate" name = "time_b" id="time_b" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" value="<?=!$info['time_b']?date('Y-m-d H:i:s',time()):$info['time_b']; ?>" placeholder="开始时间"  />
+			</div>
+			<div class="formControls col-xs-2 col-sm-2">
+				<input type="text"  class="input-text Wdate" name="time_e" id="time_e" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" value="<?=!$info['time_e']?'2099-12-31 23:59:59':$info['time_e']; ?>" placeholder="结束时间" />
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-2 col-sm-2 text-r">备注：</label>
+			<div class="col-xs-4 col-sm-4">
+				<textarea class="textarea" placeholder="备注" name="remark">{$info.remark}</textarea>
+			</div>
+
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-default js_close_layer" >取消</button>
+		<button type="submit" class="btn btn-primary">保存</button>
+	</div>
+</form>
